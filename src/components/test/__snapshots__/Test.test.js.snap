@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic rendering of counter should render 1`] = `
+<DocumentFragment>
+  <h1
+    data-testid="data-test-counter-value"
+  >
+    0
+  </h1>
+  <button
+    data-testid="data-test-increment-btn"
+  >
+    increment counter
+  </button>
+  <button
+    data-testid="data-test-decrement-btn"
+    disabled=""
+  >
+    decrement counter
+  </button>
+</DocumentFragment>
+`;
