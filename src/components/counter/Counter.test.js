@@ -36,12 +36,12 @@ describe("Basic rendering of Counter", () => {
 
 describe("Counter functionality", () => {
   test("increment button should increase counter value by 1", async() => {
-    //jest.useFakeTimers();
+    jest.useFakeTimers();
     const { getByTestId, getByText } = render(<Counter />);
 
     const incrementBtn = getByTestId("data-test-increment-btn");
      act(()=>{fireEvent.click(incrementBtn)})
-     //jest.runAllTimers();
+     jest.runAllTimers();
 
      const counter = await waitFor(()=>getByText("1"));
 

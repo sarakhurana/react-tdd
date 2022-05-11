@@ -10,12 +10,12 @@ exports[`Basic rendering of Counter should render 1`] = `
   <button
     data-testid="data-test-increment-btn"
   >
-    increment counter
+    +
   </button>
   <button
     data-testid="data-test-decrement-btn"
   >
-    decrement counter
+    -
   </button>
 </DocumentFragment>
 `;

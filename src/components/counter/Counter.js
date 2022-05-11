@@ -4,7 +4,7 @@ const Counter = () => {
   const [counter, setCounter] = useState(0);
 
   const handleIncrement = () => {
-    setTimeout(() => setCounter(counter + 1), 1000);
+    setTimeout(() => setCounter(counter + 1), 5000);
   };
   const handleDecrement = () => {
     setCounter(counter - 1);
@@ -13,10 +13,10 @@ const Counter = () => {
     <>
       <h1 data-testid="data-test-counter-value">{counter}</h1>
       <button data-testid="data-test-increment-btn" onClick={handleIncrement}>
-        increment counter
+        +
       </button>
       <button data-testid="data-test-decrement-btn" onClick={handleDecrement}>
-        decrement counter
+        -
       </button>
     </>
   );
