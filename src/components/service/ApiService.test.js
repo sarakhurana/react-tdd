@@ -6,16 +6,32 @@ import ApiService from './ApiService';
 jest.mock('axios');
 
 describe('apiService',() => {
-    test('get api should return data', async()=>{
-      axiosMock.get.mockResolvedValueOnce({data: {
-          login: "name"
-      }})
-      const { getByTestId } = render(<ApiService/>);
+  beforeEach(()=> jest.clearAllMocks());
 
-      const apiBtn = getByTestId('data-test-api-btn');
-      fireEvent.click(apiBtn)
-      const text = await waitFor(()=>getByTestId('data-test-api-response'));
+  test("loading text should appear", () => {
+    const { getByTestId } = render(<ApiService />);
 
-      expect(text.textContent).toBe("");
-    })
+    const text = getByTestId("test-loading-text");
+
+    expect(text).toHaveTextContent("Loading...");
+  });
+
+  test("should hit api and print the response on button click", async () => {
+    axiosMock.get.mockResolvedValueOnce({
+      data: {
+        login: "username",
+      },
+    });
+
+    const { getByTestId, queryByTestId } = render(<ApiService url={"/hello"} />);
+
+    const btn = getByTestId("test-api-btn");
+    fireEvent.click(btn);
+
+    const response = await waitFor (()=>getByTestId("test-api-response"));
+
+    expect(axiosMock.get).toBeCalledWith("/hello");
+    expect(queryByTestId('test-loading-text')).not.toBeInTheDocument();
+    expect(response).toHaveTextContent("username");
+  });
 })

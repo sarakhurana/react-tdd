@@ -1,17 +1,23 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const ApiService = () => {
+const ApiService = ({url}) => {
   const [response, setResponse] = useState(null);
 
-  const getResponse = async() => {
-    const res = await axios.get("https://api.github.com/users/defunkt");
+  const getResponse = async () => {
+    const res = await axios.get(url);
     setResponse(res.data.login);
   };
   return (
     <>
-      <button data-testid="data-test-api-btn" onClick={getResponse}> get response</button>
-      <p data-testid="data-test-api-response">{response? response: 'loading...'}</p>
+      <button data-testid="test-api-btn" onClick={getResponse}>
+        Fetch Result
+      </button>
+      {response ? (
+        <p data-testid="test-api-response">{response}</p>
+      ) : (
+        <p data-testid="test-loading-text"> Loading...</p>
+      )}
     </>
   );
 };
